@@ -1,0 +1,45 @@
+version: "3"
+services:
+  php:
+    container_name: chat_php
+    image: chat_php
+    privileged: true
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./../app:/var/www
+      - ./volume:/mnt/volume
+    networks:
+      - chat
+
+  nginx:
+    image: nginx:alpine
+    container_name: chat_nginx
+    restart: unless-stopped
+    ports:
+      - 9001:80
+    volumes:
+      - ./../app:/var/www
+      - ./nginx/local:/etc/nginx/conf.d/
+    networks:
+      - chat
+
+  mysql:
+    image: mysql:8
+    container_name: chat_mysql
+    restart: unless-stopped
+    ports:
+      - 9002:3306
+    environment:
+      MYSQL_DATABASE: chat
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret
+      MYSQL_USER: chat
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - chat
+
+networks:
+  chat:
+    driver: bridge
