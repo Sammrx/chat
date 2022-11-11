@@ -1,0 +1,130 @@
+body {
+    background-color: #12121D;
+}
+
+#app {
+    .navbar {
+        height: 135px;
+        border-bottom: 1px solid #30233F;
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            span {
+                color: #FFFFFF;
+                font-family: Ubuntu;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 24px;
+                line-height: 28px;
+            }
+        }
+        .nav-item {
+            a.nav-link {
+                color: #fff;
+            }
+        }
+    }
+    .card {
+        margin-top: 70px;
+        background: none;
+        border: none;
+        .card-body {
+            ul {
+                list-style: none;
+                li {
+                    margin-bottom: 78px;
+                    .clearfix {
+                        display: flex;
+                        .header {
+                            strong {
+                                height: 64px;
+                                width: 64px;
+                                background-color: #fff;
+                                border-radius: 43%;
+                                color: #6545DE;
+                                text-transform: uppercase;
+                                font-size: 24px;
+                                font-family: Ubuntu;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+                        }
+                    }
+                }
+                li:nth-child(2n+1) {
+                    .clearfix {
+                        p {
+                            margin-left: 19px;
+                            width: 597px;
+                            color: #FFFFFF;
+                            font-family: Ubuntu;
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 24px;
+                            line-height: 28px;
+                            padding: 31px 54px 32px 39px;
+                            background: #19182A;
+                            border-radius: 10px 40px 40px 40px;
+                        }
+                    }
+                }
+                li:nth-child(2n) {
+                    .clearfix {
+                        flex-direction: row-reverse;
+                        p {
+                            margin-right: 19px;
+                            width: 597px;
+                            color: #FFFFFF;
+                            font-family: Ubuntu;
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 24px;
+                            line-height: 28px;
+                            padding: 32px 33px 33px 60px;
+                            background: #4D38A2;
+                            border-radius: 40px 10px 40px 40px;
+                        }
+                    }
+                }
+            }
+        }
+        .card-footer {
+            margin-top: 253px;
+            .input-group {
+                button {
+                    background: none;
+                    border: none;
+                }
+                .first-button {
+                    align-items: center;
+                    display: flex;
+                    margin-right: 19px;
+                    img {
+                        height: 64px;
+                        width: 64px;
+                    }
+                }
+                .second-button {
+                    align-items: center;
+                    display: flex;
+                    margin-left: 29px;
+                    img {
+                        width: 42px;
+                    }
+                }
+                input {
+                    background: #12121D;
+                    border: 2px solid #403056;
+                    border-radius: 20px;
+                    color: #fff;
+                    font-family: Ubuntu;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 24px;
+                    line-height: 28px;
+                }
+            }
+        }
+    }
+}

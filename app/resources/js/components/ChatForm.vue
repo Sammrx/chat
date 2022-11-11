@@ -1,19 +1,24 @@
 <template>
     <div class="input-group">
+        <span class="input-group-btn first-button">
+          <button id="btn-chat" @click="sendMessage">
+            <img src="img/change_match_btn.png">
+          </button>
+        </span>
         <input
             id="btn-input"
             type="text"
             name="message"
-            class="form-control input-sm"
-            placeholder="Type your message here..."
+            class="form-control"
+            placeholder="Write your message..."
             v-model="newMessage"
         @keyup.enter="sendMessage"
         />
-        <span class="input-group-btn">
-      <button class="btn btn-primary btn-sm" id="btn-chat" @click="sendMessage">
-        Send
-      </button>
-    </span>
+        <span class="input-group-btn second-button">
+          <button id="btn-chat" @click="sendMessage">
+            <img src="img/vector.png">
+          </button>
+        </span>
     </div>
 </template>
 <script>

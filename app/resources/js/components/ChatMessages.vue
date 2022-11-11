@@ -4,7 +4,7 @@
             <div class="clearfix">
                 <div class="header">
                     <strong>
-                        {{ message.user.name }}
+                        {{ message.user.name[0] }}
                     </strong>
                 </div>
                 <p>
