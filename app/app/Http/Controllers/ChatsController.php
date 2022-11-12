@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChatUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,14 @@ class ChatsController extends Controller
 
     public function index()
     {
-        return view('chat');
+        $userCount = User::count();
+        return view('chat', compact('userCount'));
+    }
+
+    public function home()
+    {
+        $userCount = User::count();
+        return view('welcome', compact('userCount'));
     }
 
     public function fetchMessages()
