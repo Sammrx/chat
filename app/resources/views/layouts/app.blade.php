@@ -9,6 +9,12 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    @if(Auth::check())
+        <script>
+            var _chatId = "{{ Auth::user()->chatId() }}";
+        </script>
+    @endif
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 

@@ -38,7 +38,7 @@ const app = new Vue({
     //Upon initialisation, run fetchMessages().
     created() {
         this.fetchMessages();
-        window.Echo.private('chat')
+        window.Echo.private('chat.' + _chatId)
             .listen('MessageSent', (e) => {
                 this.messages.push({
                     message: e.message.message,

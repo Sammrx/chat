@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChatUser;
 use Illuminate\Http\Request;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,14 @@ class ChatsController extends Controller
 
     public function fetchMessages()
     {
-        return Message::with('user')->get();
+        $chatId = ChatUser::whereUserId(Auth::user()->id)->first();
+
+        $messages = Message::with('user')
+            ->join('chat_user', 'messages.user_id', '=', 'chat_user.user_id')
+            ->where('chat_user.chat_id', $chatId->chat_id)
+            ->get();
+
+        return $messages;
     }
 
     public function sendMessage(Request $request)

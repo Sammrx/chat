@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Chat;
+use App\Models\ChatUser;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -73,31 +74,22 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         $user->save();
 
-        $chat = DB::select('SELECT chat_id, COUNT(*) c FROM chats GROUP BY chat_id HAVING c < 2');
-        $chat = json_decode(json_encode($chat), true);
-        $chatId = null;
+        $chat = DB::table('chat_user')
+            ->select(DB::raw('count(*) as c, chat_id'))
+            ->groupBy('chat_id')
+            ->having('c', '<', 2)
+            ->first();
 
-        if (empty($chat)) {
-            $lastChat = DB::table('chats')->select('chat_id')->orderByDesc('chat_id')->limit('0, 1')->first();
-            if (!$lastChat) {
-                $chatId = 1;
-            }
-            if ($lastChat) {
-                $lastChat = json_decode(json_encode($lastChat), true);
-                $chatId = $lastChat['chat_id']+1;
-            }
-        }
+        $chatId = Str::uuid();
+
         if ($chat) {
-            $chatId = $chat[0]['chat_id'];
+            $chatId = $chat->chat_id;
         }
 
-        if ($chatId) {
-            $newChat = new Chat();
-
-            $newChat->chat_id = $chatId;
-            $newChat->user_id = $user->id;
-            $newChat->save();
-        }
+        $chat = new ChatUser();
+        $chat->chat_id = $chatId;
+        $chat->user_id = $user->id;
+        $chat->save();
 
         return $user;
     }
