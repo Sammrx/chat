@@ -1,10 +1,5 @@
 <template>
     <div class="input-group">
-        <span class="input-group-btn first-button">
-          <button id="btn-chat" @click="sendMessage">
-            <img src="img/change_match_btn.png">
-          </button>
-        </span>
         <input
             id="btn-input"
             type="text"
