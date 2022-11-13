@@ -33,6 +33,7 @@ class ChatsController extends Controller
         $chatId = ChatUser::whereUserId(Auth::user()->id)->first();
 
         $messages = Message::with('user')
+            ->select(['messages.*'])
             ->join('chat_user', 'messages.user_id', '=', 'chat_user.user_id')
             ->where('chat_user.chat_id', $chatId->chat_id)
             ->get();

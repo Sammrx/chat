@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes(['login' => false, 'register' => false]);
+
 Route::get('/', function () {
     $userCount = User::count();
     return view('welcome',  compact('userCount'));
 });
-
-Auth::routes();
-
+Route::get('/', 'App\Http\Controllers\Auth\RegisterController@showRegistrationForm');
+Route::post('/', 'App\Http\Controllers\Auth\RegisterController@register')->name('register');
 Route::get('/chat', [App\Http\Controllers\ChatsController::class, 'index']);
 Route::get('/messages', [App\Http\Controllers\ChatsController::class, 'fetchMessages']);
 Route::post('/messages', [App\Http\Controllers\ChatsController::class, 'sendMessage']);
