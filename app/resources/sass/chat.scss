@@ -85,9 +85,7 @@ body {
                             }
                         }
                     }
-                }
-                li:nth-child(2n+1) {
-                    .clearfix {
+                    .message-left {
                         p {
                             margin-left: 19px;
                             width: 597px;
@@ -102,9 +100,7 @@ body {
                             border-radius: 10px 40px 40px 40px;
                         }
                     }
-                }
-                li:nth-child(2n) {
-                    .clearfix {
+                    .message-right {
                         flex-direction: row-reverse;
                         p {
                             margin-right: 19px;
