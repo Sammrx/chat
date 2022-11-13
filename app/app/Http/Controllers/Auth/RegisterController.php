@@ -91,4 +91,10 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+    public function showRegistrationForm()
+    {
+        $userCount = User::count();
+        return view('welcome',  compact('userCount'));
+    }
 }

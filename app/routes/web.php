@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes(['login' => false, 'register' => false]);
+Auth::routes(['register' => false, 'login' => false]);
 
-Route::get('/', function () {
-    $userCount = User::count();
-    return view('welcome',  compact('userCount'));
-});
+Route::get('signin', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
+Route::post('signin', 'App\Http\Controllers\Auth\LoginController@login')->name('login');
 Route::get('/', 'App\Http\Controllers\Auth\RegisterController@showRegistrationForm');
 Route::post('/', 'App\Http\Controllers\Auth\RegisterController@register')->name('register');
 Route::get('/chat', [App\Http\Controllers\ChatsController::class, 'index']);
