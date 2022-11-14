@@ -1,8 +1,11 @@
 body {
     background-color: #12121D;
+    overflow-y: hidden;
 }
 
 #app {
+    overflow-y:auto;
+    height:100vh;
     .navbar {
         height: 135px;
         border-bottom: 1px solid #30233F;
